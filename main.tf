@@ -9,6 +9,12 @@ resource "tls_private_key" "my_key" {
   algorithm = "RSA"
 }
 
+# Saving Key for future use
+resource "local_file" "privatekey" {
+    content     = tls_private_key.keypair.private_key_pem
+    filename = "my_key.pem"
+}
+
 # Generate a key-pair with above key
 resource "aws_key_pair" "deployer" {
   key_name   = "deploy-key"
