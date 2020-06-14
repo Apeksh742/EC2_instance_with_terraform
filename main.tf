@@ -289,7 +289,7 @@ resource "null_resource" "final_resource" {
  depends_on = [aws_cloudfront_distribution.s3_distribution] 
  provisioner "local-exec" {
   command = <<EOT
-   rd /s /q "project/"
+   rm -rf ./project
   EOT
  }
 }
